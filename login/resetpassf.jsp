@@ -1,11 +1,11 @@
 <%@page import="java.sql.*"%>
-<%@page import="agri.dbconnect"%>
-<jsp:useBean id="s" class="agri.dbconnect"/>
+<%@page import="Digi.DoorStep_DB"%>
+<jsp:useBean id="s" class="Digi.DoorStep_DB"/>
 <jsp:getProperty name="s" property="conn"/>
 <%
 String un=request.getParameter("un");
 String sa=request.getParameter("sa");
-ResultSet rs=s.stm.executeQuery("select * from login where username='"+un+"' and s_ans='"+sa+"'");
+ResultSet rs=s.stm.executeQuery("select * from login where username='"+un+"' and s_answer='"+sa+"'");
 if(!rs.next())
 {
   out.println("<script>alert('Invalid Answer..!');history.back();</script>");

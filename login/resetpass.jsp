@@ -1,7 +1,7 @@
 <title>Resting Password...</title>
 <%@page import="java.sql.*"%>
-<%@page import="agri.dbconnect"%>
-<jsp:useBean id="s" class="agri.dbconnect"/>
+<%@page import="Digi.DoorStep_DB"%>
+<jsp:useBean id="s" class="Digi.DoorStep_DB"/>
 <jsp:getProperty name="s" property="conn"/>
 <%
      String chk=request.getParameter("Submit");

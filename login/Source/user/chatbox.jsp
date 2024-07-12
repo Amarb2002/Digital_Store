@@ -1,3 +1,22 @@
+<%
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  if (session.getAttribute("uname") != null) {
+%>
+<%@page import="java.sql.*"%>
+<%@page import="Digi.DoorStep_DB"%>
+<jsp:useBean id="s" class="Digi.DoorStep_DB"/>
+<jsp:getProperty name="s" property="conn"/>
+
+<%@page import="java.sql.*"%>
+<%@page import="Digi.DoorStep_DB"%>
+<jsp:useBean id="s1" class="Digi.DoorStep_DB"/>
+<jsp:getProperty name="s1" property="conn"/>
+
+<%@page import="java.sql.*"%>
+<%@page import="Digi.DoorStep_DB"%>
+<jsp:useBean id="s2" class="Digi.DoorStep_DB"/>
+<jsp:getProperty name="s2" property="conn"/>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -104,21 +123,29 @@
         <div class="row chat-container">
             <div class="col-md-4 contacts">
                 <input type="text" placeholder="Search..." class="form-control search-bar my-3">
+                <%
+                    String email=session.getAttribute("uname").toString();
+                    ResultSet rs2 = s.stm.executeQuery("SELECT * FROM users WHERE email='"+ email+"'");
+                    if(rs2.next()){
+                    int u_id=rs2.getInt("u_id");
+                    ResultSet rs1 = s1.stm.executeQuery("SELECT * FROM cart WHERE u_id='" + u_id + "'");
+                    while(rs1.next()){
+                        int s_id=rs1.getInt("s_id");
+                    ResultSet rs = s2.stm.executeQuery("SELECT * FROM services WHERE s_id='" + s_id + "'");
+                    while (rs.next()) 
+                        { 
+                  
+                %>
                 <div class="contact" data-name="Khalid" data-avatar="avatar1.png" data-status="Khalid is online">
-                    <img src="./assets/img/favicon.png" alt="Khalid" class="rounded-circle">
+                    <img src="assets/img/digiasset/<%=rs.getString("s_image") %>" alt="Khalid" class="rounded-circle">
                     <div class="contact-info ml-2">
-                        <span class="name">Khalid</span>
+
+                        <span class="name"><%=rs.getString("s_name")%></span>
                         <span class="status">Khalid is online</span>
                     </div>
                 </div>
-                <div class="contact" data-name="Taherah Big" data-avatar="avatar2.png" data-status="Taherah left 7 mins ago">
-                    <img src="./assets/img/favicon.png" alt="Taherah" class="rounded-circle">
-                    <div class="contact-info ml-2">
-                        <span class="name">Taherah Big</span>
-                        <span class="status">Taherah left 7 mins ago</span>
-                    </div>
-                </div>
-                <!-- Add more contacts as needed -->
+              <%}}}%>
+            <!-- Add more contacts as needed -->
             </div>
             <div class="col-md-8 chat-box">
                 <div class="chat-header d-flex align-items-center p-3 border-bottom">
@@ -144,3 +171,8 @@
 </body>
 
 </html>
+<%
+  } else {
+    out.println("<script>alert('Your Session Expired. Please Re-logIn..!'); document.location='../../index.jsp';</script>");
+  }
+%>

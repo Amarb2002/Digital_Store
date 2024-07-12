@@ -48,16 +48,11 @@ width:60px;
 
         <nav id="navbar" class="navbar nav-menu">
             <ul>
-                <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-                <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>ConnectU</span></a></li>
-                <li><a href="#about" class="nav-link scrollto"><i class="bx bx-layer"></i> <span>Explore</span></a></li>
-                <li><a href="#resume" class="nav-link scrollto"><i class="fa-solid fa-book"></i> <span>Library</span></a></li>
-                <li><a href="#portfolio" class="nav-link scrollto"><i class="fa-solid fa-lightbulb"></i> <span>Vision Vault</span></a></li>
-                <li><a href="#services" class="nav-link scrollto"><i class="fa-solid fa-user-tie"></i> <span>Job Junction</span></a></li>
-               
-                <li>
-                    <a href="#contact" class="nav-link scrollto"><img class="profile" src="assets/img/favicon.png"></img> <span> Profile</span></a>
-                </li>
+                <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Dashbord</span></a></li>
+                <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Servies</span></a></li>
+                <li><a href="#about" class="nav-link scrollto"><i class="fa-solid fa-cart-shopping"></i> <span>cart</span></a></li>
+                <li><a href="#resume" class="nav-link scrollto"><i class="fa-solid fa-book"></i> <span>My Orders</span></a></li>
+                <li><a href="#portfolio" class="nav-link scrollto"><i class="fa-solid fa-user-tie"></i> <span>Support</span></a></li>
             </ul>
         </nav>
         <!-- .nav-menu -->

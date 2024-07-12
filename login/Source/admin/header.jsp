@@ -136,9 +136,8 @@
     <header class="header">
         <h1>Digital India</h1>
         <nav>
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="#">Admin</a>
+           
         </nav>
         <div class="profile">
             <img style="margin-right:30px;" src="assets/img/favicon.png" alt="Profile">

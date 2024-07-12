@@ -1,10 +1,10 @@
 <%@page import="java.sql.*"%>
-<%@page import="agri.dbconnect"%>
-<jsp:useBean id="s" class="agri.dbconnect"/>
+<%@page import="Digi.DoorStep_DB"%>
+<jsp:useBean id="s" class="Digi.DoorStep_DB"/>
 <jsp:getProperty name="s" property="conn"/>
 <%
 String un=request.getParameter("uname");
-ResultSet rs=s.stm.executeQuery("select * from login where username='"+un+"' and status='active'");
+ResultSet rs=s.stm.executeQuery("select * from login where username='"+un+"'");
 if(!rs.next())
 {
   out.println("<script>alert('Invalid Username or Username not Found!');document.location='fpass1.jsp';</script>");
@@ -41,7 +41,7 @@ else
 		      	<form action="resetpassf.jsp" method="post" class="signin-form">
 				<input type="hidden" value="<%=un%>" name="un"/>
 		      		<div class="form-group">
-		      			<input type="text" name="sq" class="form-control" value="<%=rs.getString("s_qstn")%>"  readonly="">
+		      			<input type="text" name="sq" class="form-control" value="<%=rs.getString("s_question")%>"  readonly="">
 		      		</div>
 					<div class="form-group">
 		      			<input type="password" autofocus="on" name="sa" class="form-control" autofocus="on" placeholder="Answer" required>

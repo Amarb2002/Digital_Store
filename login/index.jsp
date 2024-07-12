@@ -12,7 +12,9 @@
 	<link rel="stylesheet" href="lgn_tmp/css/style.css">
 
 	</head>
-	<body class="img js-fullheight" style="background-image: url(lgn_tmp/images/bg.jpg);">
+	<body class="img js-fullheight" "
+	style="background-image: linear-gradient(rgba(44, 66, 142, 0.457), rgba(59, 59, 158, 0.374)), url(lgn_tmp/images/bg22.jpg);
+">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -46,7 +48,7 @@
 	          </form>
 	          <p class="w-100 text-center">&mdash; or Sign Up &mdash;</p>
 	          <div class="social d-flex text-center">
-	          	<a href="farmer_regf.jsp" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span><i class="fa fa-user"></i> Farmer Reg.</a>
+	          	<a href="user_regf.jsp" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span><i class="fa fa-user"></i> Citizen Reg.</a>
 	          </div>
 		      </div>
 				</div>

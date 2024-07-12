@@ -1,3 +1,14 @@
+<%
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  if (session.getAttribute("uname") != null) {
+%>
+<%@page import="java.sql.*"%>
+<%@page import="Digi.DoorStep_DB"%>
+<jsp:useBean id="s" class="Digi.DoorStep_DB"/>
+<jsp:getProperty name="s" property="conn"/>
+<% 
+  String un = session.getAttribute("uname").toString();  
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,38 +141,57 @@
         .btn-logout:hover {
             background-color: darkred;
         }
+        .name{
+      
+            color: red;
+        }
     </style>
 </head>
 <body>
     <header class="header">
+          <%
+        ResultSet rs = s.stm.executeQuery("SELECT * FROM users WHERE email='" + un + "'");
+        if (rs.next()) { 
+        %>
         <h1>Digital India</h1>
         <nav>
-            <a href="#services">Services</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="#">Users</a>
         </nav>
+      
         <div class="profile">
-            <img style="margin-right:30px;" src="assets/img/favicon.png" alt="Profile">
-            <div class="dropdown-content">
-                <img src="assets/img/apple-touch-icon.png" alt="Profile Picture" class="profile-pic">
-                <h3>Super Admin</h3>
-                <p>lmsadmin@mindscroll.com</p>
-                <p>2025550154</p>
-                <div class="profile-stats">
-                    <div>
-                        <span>34</span>
-                        Courses
+            <form action="../../logout.jsp" method="post">
+                <img style="margin-right:30px;" src="assets/img/favicon.png" alt="Profile">
+                <div class="dropdown-content">
+        
+                    <img src="assets/img/testimonials/<%= rs.getString("u_image") %>" alt="Profile Picture" class="profile-pic">
+                    <h3 class="name"><%=rs.getString("name") %></h3>
+                    <p><%= rs.getString("email") %></p>
+                    <p><%= rs.getString("phone") %></p>
+                    <div class="profile-stats">
+                        <div>
+                            <span>34</span>
+                            Courses
+                        </div>
+                        <div>
+                            <span>31</span>
+                            Users
+                        </div>
                     </div>
-                    <div>
-                        <span>31</span>
-                        Users
-                    </div>
+                    <a href="#manage-account">Manage Your Account</a>
+                    <a href="#manage-settings">Manage Settings</a>
+                    <button class="btn-logout">Logout</button>
+      
                 </div>
-                <a href="#manage-account">Manage Your Account</a>
-                <a href="#manage-settings">Manage Settings</a>
-                <button class="btn-logout">Logout</button>
-            </div>
+            </form>
         </div>
+          <% 
+        }
+        %>
     </header>
 </body>
 </html>
+<%
+  } else {
+    out.println("<script>alert('Your Session Expired. Please Re-logIn..!'); document.location='../../index.jsp';</script>");
+  }
+%>
