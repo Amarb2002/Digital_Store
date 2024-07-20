@@ -136,7 +136,9 @@
 <body>
     <jsp:include page="sidebar.jsp"></jsp:include>
     <jsp:include page="header.jsp"></jsp:include>
-
+</br>
+</br>
+</br>
     <div class="booking-container">
         <h1>Booking History</h1>
         <%

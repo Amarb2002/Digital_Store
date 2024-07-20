@@ -1,3 +1,7 @@
+<%
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  if (session.getAttribute("uname") != null) {
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -175,4 +179,9 @@
 
 </body>
 </html>
+<%
+  } else {
+    out.println("<script>alert('Your Session Expired. Please Re-logIn..!'); document.location='../../index.jsp';</script>");
+  }
+%>
        

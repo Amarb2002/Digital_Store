@@ -51,11 +51,12 @@
     </main>
 
     <!-- Popup Button and Popup Div -->
+    <%if(request.getRequestURI().contains("home.jsp")||request.getRequestURI().contains("dashbord.jsp")){%>
     <a class="popup-button" id="openPopup"><i id="myIcon" class="fa-solid fa-cart-shopping"></i></a>   
     <div class="popup container mt-5" id="popupDiv">
         <jsp:include page="chatbox.jsp"></jsp:include>
     </div>
-
+<%}%>
     <!-- JavaScript to toggle the popup -->
     <script>
         const openButton = document.getElementById('openPopup');
@@ -80,5 +81,6 @@
             }
         });
     </script>
+    <jsp:include page="mata.jsp"></jsp:include>
 </body>
 </html>

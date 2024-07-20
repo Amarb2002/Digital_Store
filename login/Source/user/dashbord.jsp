@@ -1,3 +1,16 @@
+<%
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  if (session.getAttribute("uname") != null) {
+%>
+<%@page import="java.sql.*"%>
+<%@page import="Digi.DoorStep_DB"%>
+<jsp:useBean id="s" class="Digi.DoorStep_DB"/>
+<jsp:getProperty name="s" property="conn"/>
+<%@page import="java.sql.*"%>
+<%@page import="Digi.DoorStep_DB"%>
+<jsp:useBean id="s1" class="Digi.DoorStep_DB"/>
+<jsp:getProperty name="s1" property="conn"/>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,8 +46,10 @@
             color: #007bff;
         }
         .main {
-            margin-left: 220px;
+            margin-left: auto;
+            margin-right: auto;
             padding: 20px;
+            max-width: 1200px;
         }
         .card {
             border: none;
@@ -63,97 +78,134 @@
     </style>
 </head>
 <body>
-    <jsp:include page="sidebar.jsp"></jsp:include>
-    <jsp:include page="header.jsp"></jsp:include>
-    <div class="container-fluid">
+
+   <jsp:include page="header.jsp"></jsp:include>   
+
+    <div class="container-fluid main">
+        </br>
+</br>
+</br>
+<%
+        int agents=0;
+        String name="";
+        int booking=0;
+        int services=0;
+        String email=session.getAttribute("uname").toString();
+        ResultSet rs = s.stm.executeQuery("SELECT * FROM users WHERE email='"+ email+"'");
+        if(rs.next()){
+            name=rs.getString("name");
+            int u_id=rs.getInt("u_id");
+            ResultSet rs1 = s.stm.executeQuery("SELECT * FROM booking WHERE c_id='" + u_id + "'");
+            while(rs1.next()){
+                booking++;
+            }
+            rs1.close();
+            
+            rs1 = s1.stm.executeQuery("SELECT * FROM services ");
+            while(rs1.next()){
+                services++;
+            }
+            rs1.close();
+             rs1 = s1.stm.executeQuery("SELECT * FROM agents ");
+            while(rs1.next()){
+                agents++;
+            }
+            rs1.close();
+        }
+%>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Welcome To The Digital-Door Mr.<%=name%> </h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                    <span data-feather="calendar"></span>
+                    <i class="far fa-calendar-alt"></i>
+                </button>
+            </div>
+        </div>
+
         <div class="row">
-            <!-- Sidebar placeholder -->
-            <!-- Include your sidebar HTML here -->
-
-            <main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Monitor health of your business</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group mr-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Week</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Month</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Year</button>
-                        </div>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">
-                            <span data-feather="calendar"></span>
-                            <i class="far fa-calendar-alt"></i>
-                        </button>
+            <div  class="col-md-4">
+                <div style="background: #ff6385;" class="card mb-4 shadow-sm bg-gradient">
+                    <div class="card-body">
+                        <h5 class="card-title">Services</h5>
+                        <p class="card-text"><%=services%>    <span> (Latest update)</span></p>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm bg-gradient">
-                            <div class="card-body">
-                                <h5 class="card-title">Views</h5>
-                                <p class="card-text">31 <span>+3 last day</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm bg-gradient-blue">
-                            <div class="card-body">
-                                <h5 class="card-title">Clients</h5>
-                                <p class="card-text">63 <span>+1 last day</span></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm bg-gradient-white">
-                            <div class="card-body">
-                                <h5 class="card-title">Purchases</h5>
-                                <p class="card-text">10 <span>+1 last day</span></p>
-                            </div>
-                        </div>
+            </div>
+              <div class="col-md-4">
+                <div class="card mb-4 shadow-sm bg-gradient-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Agent's</h5>
+                        <p class="card-text"><%=agents%><span> (Latest update)</span></p>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="card mb-4 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Total profit</h5>
-                                <canvas id="profitChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">Properties</h5>
-                                <ul class="list-unstyled">
-                                    <li class="media mb-3">
-                                        <img src="image1.jpg" class="mr-3" alt="Windmills Loft" style="width: 50px; height: 50px;">
-                                        <div class="media-body">
-                                            <h6 class="mt-0 mb-1">Windmills Loft</h6>
-                                            <span>25% increase</span>
-                                        </div>
-                                    </li>
-                                    <li class="media mb-3">
-                                        <img src="image2.jpg" class="mr-3" alt="Seaview Villa" style="width: 50px; height: 50px;">
-                                        <div class="media-body">
-                                            <h6 class="mt-0 mb-1">Seaview Villa</h6>
-                                            <span>18% increase</span>
-                                        </div>
-                                    </li>
-                                    <li class="media mb-3">
-                                        <img src="image3.jpg" class="mr-3" alt="Family Villa" style="width: 50px; height: 50px;">
-                                        <div class="media-body">
-                                            <h6 class="mt-0 mb-1">Family Villa</h6>
-                                            <span>12% increase</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm bg-gradient-blue">
+                    <div class="card-body">
+                        <h5 class="card-title">Booked</h5>
+                        <p class="card-text"><%=booking%><span> (Latest update)</span></p>
                     </div>
                 </div>
-            </main>
+            </div>
+          
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Comparison </h5>
+                        <canvas id="profitChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Follow Step's</h5>
+                        <ul class="list-unstyled">
+                            <li class="media mb-3">
+                                
+                                <i style="width: 60px; height: 50px; margin-top: 0px;margin-left: 8px; font-size:30px" class="fa-solid fa-magnifying-glass"></i>
+                                <div class="media-body">
+                                    <h6 class="mt-0 mb-1">Choose Service </h6>
+                                    <span>a service which you want. </span>
+                                </div>
+                            </li>
+                            <li class="media mb-3">
+                                <i style="width: 60px; height: 50px; margin-top: 0px;margin-left: 8px; font-size:30px" class="fa-solid fa-credit-card"></i>
+                                <div class="media-body">
+                                    <h6 class="mt-0 mb-1">Make a payment. </h6>
+                                    <span>in the card make a payment. </span>
+                                </div>
+                            </li>
+                            <li class="media mb-3">
+                               <i style="width: 60px; height: 50px; margin-top: 0px;margin-left: 8px; font-size:30px" class="fa-solid fa-check"></i>
+                                <div class="media-body">
+                                    <h6 class="mt-0 mb-1">Check the status. </h6>
+                                    <span> where is your application?  </span>
+                                </div>
+                            </li>
+                            <li class="media mb-3">
+                                <i style="width: 60px; height: 50px; margin-top: 0px;margin-left: 8px; font-size:30px" class="fa-solid fa-phone"></i>
+                                <div class="media-body">
+                                    <h6 class="mt-0 mb-1">Contact.  </h6>
+                                    <span> Agent may contact you.   </span>
+                                </div>
+                            </li>
+                            <li class="media mb-3">
+                                <i style="width: 60px; height: 50px; margin-top: 0px;margin-left: 8px; font-size:30px" class="fa-solid fa-truck"></i>
+                                <div class="media-body">
+                                    <h6 class="mt-0 mb-1">Delivered.  </h6>
+                                    <span>service delivered to your house.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -168,12 +220,12 @@
             data: {
                 labels: ['June', 'July', 'August', 'September', 'October', 'November', 'December'],
                 datasets: [{
-                    label: 'Income',
+                    label: "Agent's",
                     data: [300000, 200000, 400000, 500000, 600000, 700000, 800000],
                     borderColor: 'rgba(75, 192, 192, 1)',
                     fill: false
                 }, {
-                    label: 'Expense',
+                    label: "Customer's",
                     data: [150000, 100000, 200000, 250000, 300000, 350000, 400000],
                     borderColor: 'rgba(255, 99, 132, 1)',
                     fill: false
@@ -193,14 +245,19 @@
                         display: true,
                         title: {
                             display: true,
-                            text: 'Amount'
+                            text: ''
                         }
                     }
                 }
             }
         });
     </script>
-        <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="sidebar.jsp"></jsp:include>
 </body>
-
 </html>
+<%
+  } else {
+    out.println("<script>alert('Your Session Expired. Please Re-logIn..!'); document.location='../../index.jsp';</script>");
+  }
+%>

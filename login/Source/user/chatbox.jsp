@@ -38,6 +38,7 @@
             height: 80vh;
             background: rgba(255, 255, 255, 0.5);
             border-radius: 10px;
+            border-color: black;
             overflow: hidden;
             backdrop-filter: blur(10px);
         }
@@ -106,7 +107,7 @@
 
         .message p {
             display: inline-block;
-            max-width: 70%;
+            max-width: 80%;
         }
 
         .message.received p {
@@ -202,7 +203,7 @@
 
                     <div class="container ">
         
-        <table id="cartTable">
+        <table id="cartTable" class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>Item</th>

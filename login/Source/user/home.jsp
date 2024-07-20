@@ -1,3 +1,7 @@
+<%
+  response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  if (session.getAttribute("uname") != null) {
+%>
 <%@page import="java.sql.*"%>
 <%@page import="Digi.DoorStep_DB"%>
 <jsp:useBean id="s" class="Digi.DoorStep_DB"/>
@@ -9,9 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services</title>
     <style>
-    
         .services {
             text-align: center;
+            margin-top: 20px;
         }
 
         .service-list {
@@ -77,32 +81,43 @@
     </style>
 </head>
 <body>
-    <jsp:include page="sidebar.jsp"></jsp:include>
-    <jsp:include page="header.jsp"></jsp:include>
+   <jsp:include page="header.jsp"></jsp:include>
+    
     <div class="contenar">
         <section class="services" id="services">
             <h2>Our Services</h2>
             <div class="service-list">
                 <%
-                  ResultSet rs=s.stm.executeQuery("select * from services");
-                  while(rs.next()){ 
-                    int i=rs.getInt("s_id");
+                  try {
+                      ResultSet rs = s.stm.executeQuery("select * from services");
+                      while(rs.next()){ 
+                          int i = rs.getInt("s_id");
                 %>
                 <div class="service-item">
-                    <img src="assets/img/digiasset/<%=rs.getString("s_image") %>" alt="Service <%=i+1 %>">
+                    <img src="assets/img/digiasset/<%=rs.getString("s_image") %>" alt="Service <%=i %>">
                     <h3><%=rs.getString("s_name") %></h3>
-                    <p><%=rs.getString("s_description")%></p>
-                    <a href="cart_ins.jsp?s_id=<%=i%>"><div class="btn-div">
+                    <p><%=rs.getString("s_description") %></p>
+                    <a href="cart_ins.jsp?s_id=<%=i %>"><div class="btn-div">
                         <span>Book</span>
                     </div></a>
                 </div>
                 <%
-                    
-                  } 
+                      }
+                      rs.close();
+                  } catch (SQLException e) {
+                      e.printStackTrace();
+                  }
                 %>
             </div>
         </section>
     </div>
     <jsp:include page="footer.jsp"></jsp:include>
+     <jsp:include page="sidebar.jsp"></jsp:include>
+    
 </body>
 </html>
+<%
+  } else {
+    out.println("<script>alert('Your Session Expired. Please Re-logIn..!'); document.location='../../index.jsp';</script>");
+  }
+%>
