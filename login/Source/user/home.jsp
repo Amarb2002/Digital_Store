@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services</title>
     <style>
+    
         .services {
             text-align: center;
         }
@@ -90,7 +91,7 @@
                 <div class="service-item">
                     <img src="assets/img/digiasset/<%=rs.getString("s_image") %>" alt="Service <%=i+1 %>">
                     <h3><%=rs.getString("s_name") %></h3>
-                    <p><%=rs.getString("s_description") %></p>
+                    <p><%=rs.getString("s_description")%></p>
                     <a href="cart_ins.jsp?s_id=<%=i%>"><div class="btn-div">
                         <span>Book</span>
                     </div></a>

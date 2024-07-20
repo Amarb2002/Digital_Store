@@ -19,15 +19,15 @@
 					session.setAttribute("uname",un);
 					if(utp.equals("admin"))
 					{
-						response.sendRedirect("Source/admin/home.jsp");
+						response.sendRedirect("Source/admin/dashbord.jsp");
 					}
 					else if(utp.equals("user"))
 					{
-						response.sendRedirect("Source/user/home.jsp");
+						response.sendRedirect("Source/user/dashbord.jsp");
 					}
 					else if(utp.equals("agent"))
 					{
-						response.sendRedirect("Source/agent/home.jsp");
+						response.sendRedirect("Source/agent/dashbord.jsp");
 					}
 			}
 			else

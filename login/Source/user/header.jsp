@@ -20,6 +20,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #666666;
         }
 
         .header {
@@ -160,7 +161,7 @@
       
         <div class="profile">
             <form action="../../logout.jsp" method="post">
-                <img style="margin-right:30px;" src="assets/img/favicon.png" alt="Profile">
+                <i style="margin-right:30px;" class="fas fa-user-circle fa-2x"></i>
                 <div class="dropdown-content">
         
                     <img src="assets/img/testimonials/<%= rs.getString("u_image") %>" alt="Profile Picture" class="profile-pic">
@@ -177,7 +178,7 @@
                             Users
                         </div>
                     </div>
-                    <a href="#manage-account">Manage Your Account</a>
+                    <a href="profile.jsp">Manage Your Account</a>
                     <a href="#manage-settings">Manage Settings</a>
                     <button class="btn-logout">Logout</button>
       

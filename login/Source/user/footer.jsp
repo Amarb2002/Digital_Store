@@ -5,9 +5,9 @@
 <body>
 
 <footer id="footer">
-    <div class="container">
+    <div  class="container-f">
     
-        <h3>Amar B</h3>
+        <h2 style="font-weight: bold;">Amar B</h2>
         <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
         <div class="social-links">
             <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -20,7 +20,7 @@
             &copy; Copyright <strong><span>MyResume</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
-            Designed by <a href="#">Amar Bambalawade</a>
+            Designed by <a class="a" href="#">Amar Bambalawade</a>
         </div>
     </div>
 </footer>
