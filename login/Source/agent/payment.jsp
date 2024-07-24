@@ -49,7 +49,6 @@
         <div class="processing-container">
             <h1 class="processing-message">Processing Payment...</h1>
             <%
-
                 String user = session.getAttribute("uname").toString();
                 ResultSet rs1 = s.stm.executeQuery("SELECT * FROM users WHERE email='" + user + "'");
                 if (rs1.next()) {
@@ -60,10 +59,8 @@
                     // For example, you could mark the cart items as purchased
                     
                     // Clear the cart
-                        java.util.Date Date = new java.util.Date();
-                        String date=Date.toString();
                     
-                    int z1 = s.stm.executeUpdate("insert into booking values(null,'"+u_id+"',null,'"+s_id+"','booked','"+date+"')");
+                    int z1 = s.stm.executeUpdate("insert into booking values(null,'"+u_id+"',null,'"+s_id+"','booked')");
                 }
                     int z = s.stm.executeUpdate("DELETE FROM cart WHERE u_id='" + u_id + "'");
                     out.println("<script>alert('Payment Successful!'); document.location='Bill.jsp';</script>");

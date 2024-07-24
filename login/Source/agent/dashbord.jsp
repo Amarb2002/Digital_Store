@@ -16,7 +16,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DigiDoorStep Dashboard</title>
+<link rel="icon" href="assets/door-open-solid.ico" type="image/svg+xml">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
@@ -86,16 +86,16 @@
 </br>
 </br>
 <%
-        int agents=0;
+        int users=0;
         String name="";
         int booking=0;
         int services=0;
         String email=session.getAttribute("uname").toString();
-        ResultSet rs = s.stm.executeQuery("SELECT * FROM users WHERE email='"+ email+"'");
+        ResultSet rs = s.stm.executeQuery("SELECT * FROM agents WHERE email_id='"+email+"'");
         if(rs.next()){
-            name=rs.getString("name");
-            int u_id=rs.getInt("u_id");
-            ResultSet rs1 = s.stm.executeQuery("SELECT * FROM booking WHERE c_id='" + u_id + "'");
+            name=rs.getString("center_name");
+            int a_id=rs.getInt("a_id");
+            ResultSet rs1 = s.stm.executeQuery("SELECT * FROM booking WHERE a_id='" + a_id + "'");
             while(rs1.next()){
                 booking++;
             }
@@ -106,15 +106,15 @@
                 services++;
             }
             rs1.close();
-             rs1 = s1.stm.executeQuery("SELECT * FROM agents ");
+             rs1 = s1.stm.executeQuery("SELECT * FROM users ");
             while(rs1.next()){
-                agents++;
+                users++;
             }
             rs1.close();
         }
 %>
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Welcome To The Digital-Door Mr.<%=name%> </h1>
+            <h1 class="h2">Welcome To The Digital-Door  <%=name%> </h1>
             <div class="btn-toolbar mb-2 mb-md-0">
                 
                 <button type="button" class="btn btn-sm btn-outline-secondary">
@@ -136,15 +136,15 @@
               <div class="col-md-4">
                 <div class="card mb-4 shadow-sm bg-gradient-white">
                     <div class="card-body">
-                        <h5 class="card-title">Agent's</h5>
-                        <p class="card-text"><%=agents%><span> (Latest update)</span></p>
+                        <h5 class="card-title">User's</h5>
+                        <p class="card-text"><%=users%><span> (Latest update)</span></p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm bg-gradient-blue">
                     <div class="card-body">
-                        <h5 class="card-title">Booked</h5>
+                        <h5 class="card-title">My Work</h5>
                         <p class="card-text"><%=booking%><span> (Latest update)</span></p>
                     </div>
                 </div>
@@ -170,36 +170,36 @@
                                 
                                 <i style="width: 60px; height: 50px; margin-top: 0px;margin-left: 8px; font-size:30px" class="fa-solid fa-magnifying-glass"></i>
                                 <div class="media-body">
-                                    <h6 class="mt-0 mb-1">Choose Service </h6>
-                                    <span>a service which you want. </span>
+                                    <h6 class="mt-0 mb-1">Choose FieldWork </h6>
+                                    <span>a Customer which is Near. </span>
                                 </div>
                             </li>
                             <li class="media mb-3">
                                 <i style="width: 60px; height: 50px; margin-top: 0px;margin-left: 8px; font-size:30px" class="fa-solid fa-credit-card"></i>
                                 <div class="media-body">
-                                    <h6 class="mt-0 mb-1">Make a payment. </h6>
-                                    <span>in the card make a payment. </span>
+                                    <h6 class="mt-0 mb-1">Accept it </h6>
+                                    <span>after Acception user get details </span>
                                 </div>
                             </li>
                             <li class="media mb-3">
-                               <i style="width: 60px; height: 50px; margin-top: 0px;margin-left: 8px; font-size:30px" class="fa-solid fa-check"></i>
+                               <i style="width: 60px; height: 50px; margin-top: 0px;margin-left: 8px; font-size:30px" class="fa-solid fa-truck-ramp-box"></i>
                                 <div class="media-body">
-                                    <h6 class="mt-0 mb-1">Check the status. </h6>
-                                    <span> where is your application?  </span>
+                                    <h6 class="mt-0 mb-1">Click On Out for Services </h6>
+                                    <span> when You are in work  </span>
                                 </div>
                             </li>
                             <li class="media mb-3">
                                 <i style="width: 60px; height: 50px; margin-top: 0px;margin-left: 8px; font-size:30px" class="fa-solid fa-phone"></i>
                                 <div class="media-body">
                                     <h6 class="mt-0 mb-1">Contact.  </h6>
-                                    <span> Agent may contact you.   </span>
+                                    <span>contact if you need More details</span>
                                 </div>
                             </li>
                             <li class="media mb-3">
                                 <i style="width: 60px; height: 50px; margin-top: 0px;margin-left: 8px; font-size:30px" class="fa-solid fa-truck"></i>
                                 <div class="media-body">
                                     <h6 class="mt-0 mb-1">Delivered.  </h6>
-                                    <span>service delivered to your house.</span>
+                                    <span>Send Request for Payment</span>
                                 </div>
                             </li>
                         </ul>
@@ -252,7 +252,7 @@
             }
         });
     </script>
-    
+    <jsp:include page="footer.jsp"></jsp:include>
     <jsp:include page="sidebar.jsp"></jsp:include>
 </body>
 </html>

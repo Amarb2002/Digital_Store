@@ -29,6 +29,7 @@
         <h1>Booking Status</h1>
         <%
         int statusIndex=0;
+        int statusIndexx=0;
         int count = 0;
         String status = "";
         String email = session.getAttribute("uname").toString();
@@ -40,6 +41,7 @@
                 count++;
                 int b_id = rs1.getInt("b_id");
                 int s_id = rs1.getInt("s_id");
+                
                 ResultSet rs = s2.stm.executeQuery("SELECT * FROM services WHERE s_id='" + s_id + "'");
                 while (rs.next()) {
                     status = rs1.getString("status");
@@ -54,7 +56,9 @@
                 statusIndex = 3;
             } else if (status.equals("Reached")) {
                 statusIndex = 4;
-            } %>
+            } else if (status.equals("Request payment")) {
+                statusIndexx = 5;
+            }%>
             <div class="booking-header">
                 <h2><%= rs.getString("s_name") %></h2>
                 <a href="#" class="booking-status">View</a>
@@ -82,7 +86,9 @@
             </div>
             <% if (statusIndex == 4) { %>
             <button class="btn completed">Delivered</button>
-            <% } else { %>
+            <% } else if(statusIndexx == 5){
+                %><a href="payment_ins.jsp?b_id=<%= b_id %>"><button class="btn">Work done </button></a><%
+            }else { %>
             <a href="delete_booking.jsp?b_id=<%= b_id %>"><button class="btn">Cancel</button></a>
             <% } %>
         </div>

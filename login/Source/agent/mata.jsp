@@ -9,6 +9,7 @@
 
     <!-- Google Fonts -->
     <link href="Desine/dashstyle.css" rel="stylesheet">
+    <link rel="icon" href="assets/door-open-solid.ico" type="image/svg+xml">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">

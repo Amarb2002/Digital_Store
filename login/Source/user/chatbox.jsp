@@ -80,7 +80,7 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.4);
         }
 
         .chat-header {
@@ -132,7 +132,7 @@
             left: 310px;
             background: rgb(242, 94, 94);
             border: none;
-            color: black;
+            color: white;
             font-size: 2em;
             cursor: pointer;
             padding: 2px 5px;
@@ -151,9 +151,9 @@
 
 <body>
     
-        <div class="row chat-container">
+        <div style="background: rgba(8, 8, 8, 0.63);margin-top: 110px;" class="row chat-container">
             <div class="col-md-4 contacts">
-                <h1>Cart Item's</h1>
+                <h1 style="color:white;">Cart Item's</h1>
 
                 <%
                 int i=1;
@@ -186,8 +186,8 @@
                     
                     <img src="assets/img/digiasset/<%=rs.getString("s_image") %>" alt="Khalid" class="rounded-circle">
                     <div class="contact-info ml-2">
-                        <span class="name"><%=rs.getString("s_name")%></span>
-                        <span class="status">Khalid is online</span>
+                        <span style="color: white;" class="name"><%=rs.getString("s_name")%></span>
+                        <span style="color: white;" class="status">Khalid is online</span>
                     </div>
                     <a class="remove-btn" href="cart_remove.jsp?s_id=<%=id%>">&times</a>
                 </div>
@@ -196,7 +196,7 @@
             </div>
             <div class="col-md-8 chat-box">
                 <div class="chat-header">
-                    <h1>Cart Summary</h1>
+                    <h1 style="color: white;">Cart Summary</h1>
                 </div>
                 <div class="chat-messages p-3">
                     <jsp:include page="cart_bill.jsp"></jsp:include>
@@ -205,8 +205,8 @@
         
         <table id="cartTable" class="table table-striped table-bordered">
             <thead>
-                <tr>
-                    <th>Item</th>
+                <tr >
+                    <th >Item</th>
                     <th>Price</th>
                     <th>Charge</th>
                     <th>Subtotal</th>
