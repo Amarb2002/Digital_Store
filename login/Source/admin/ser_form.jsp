@@ -12,10 +12,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Profile Editing Section</title>
     <style>
         .body {
-
             font-family: Arial, sans-serif;
             width: 100%;
             display: flex;
@@ -26,7 +25,6 @@
             background-color: #f4f4f4;
         }
         .profile-edit-container {
-
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -38,7 +36,7 @@
         .profile-photo {
             width: 120px;
             height: 120px;
-            border-radius: 50%;
+            border-radius: 10%;
             background-color: #ddd;
             display: flex;
             justify-content: center;
@@ -102,48 +100,44 @@
 <body>
     <jsp:include page="sidebar.jsp"></jsp:include>
     <jsp:include page="header.jsp"></jsp:include>
-    <%
-     String email = session.getAttribute("uname").toString();
-        ResultSet rs2 = s.stm.executeQuery("SELECT * FROM agents WHERE email_id='" + email + "'");
-        if(rs2.next()) {%>
-    </br></br></br>
+<%--     <%
+     String s_id = request.getParameter("s_id");
+        ResultSet rs2 = s.stm.executeQuery("SELECT * FROM services WHERE s_id='" + s_id + "'");
+        if(rs2.next()) {%> --%>
     <div class="body">
         <div class="profile-edit-container">
             <div class="profile-photo" id="profilePhoto">
-                <img src="assets/img/testimonials/<%=rs2.getString("a_image")%>" alt="Profile Photo">
+                <img src="assets/img/digiasset/ %>" alt="Profile Photo">
             </div>
-            <form action="profile_update.jsp" method="post">
+            <form action="srv_ins.jsp" method="post">
             <input type="file" name="fileInput" id="fileInput" class="file-input" accept="image/*">
             <h2>Edit Profile</h2>
             
                 <div class="form-group">
-                    <label for="username">Center Name</label>
-                    <input type="text" value="<%=rs2.getString("center_name")%>" id="name" name="name" required>
+                    <label for="username">Service Name</label>
+                    <input type="text"  id="name" name="name" required>
                 </div>
                 <div class="form-group">
-                    <label for="bio">Agent ID</label>
-                    <input type="text" id="a_id" value="<%=rs2.getString("agent_id")%>" name="a_id">
+                    <label for="text">Description</label>
+                    <input type="text"  id="desc" name="desc" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" value="<%=rs2.getString("email_id")%>" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="bio">Mobile No</label>
-                    <input type="text" id="mobile" value="<%=rs2.getString("phone_no")%>" name="mobile">
-                </div>
+                    <label for="bio">Requirement</label>
+                     <%-- <input type="textarea" id="req" value="" name="req">  --%>
 
-                <div class="form-group">
-                    <label for="bio">Address</label>
-                    <input type="text" id="address" value="<%=rs2.getString("address")%>" name="address">
+                     <textarea rows="5" cols="60" id="req" name="req"></textarea>
                 </div>
+                <div class="form-group">
+                    <label for="bio">Cost</label>
+                    <input type="number" id="cost"  name="cost">
+                                  </div>
                 <div class="form-group">
                     <button type="submit">Save Changes</button>
                 </div>
             </form>
         </div>
     </div>
-    <%}%>
+    <%-- <%}%> --%>
     <jsp:include page="footer.jsp"></jsp:include>
     <script>
         document.getElementById('profilePhoto').addEventListener('click', function() {

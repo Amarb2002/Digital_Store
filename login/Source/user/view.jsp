@@ -6,6 +6,10 @@
 <%@page import="Digi.DoorStep_DB"%>
 <jsp:useBean id="s" class="Digi.DoorStep_DB"/>
 <jsp:getProperty name="s" property="conn"/>
+<%@page import="java.sql.*"%>
+<%@page import="Digi.DoorStep_DB"%>
+<jsp:useBean id="s1" class="Digi.DoorStep_DB"/>
+<jsp:getProperty name="s1" property="conn"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +34,7 @@
             margin: 40px auto;
             padding: 30px;
             border-radius: 10px;
-            background-color: rgb(242, 242, 242);
+            background-color: rgb(230, 230, 230);
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
@@ -77,7 +81,7 @@
             resize: vertical;
         }
 
-        .feedback-section button {
+        .feedback-section a {
             padding: 12px;
             border: none;
             border-radius: 8px;
@@ -85,10 +89,22 @@
             color: #ffffff;
             font-size: 18px;
             cursor: pointer;
+            justify-item: center;
+            transition: background-color 0.3s;
+        }
+        .feedback-section .btn {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+            justify-item: center;
             transition: background-color 0.3s;
         }
 
-        .feedback-section button:hover {
+        .feedback-section a:hover {
             background-color: #2980b9;
         }
 
@@ -113,7 +129,16 @@
         }
 
         .old-feedback {
+            display: flex;
+            align-items: center;
             margin-bottom: 20px;
+        }
+
+        .old-feedback img {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            margin-right: 20px;
         }
 
         .old-feedback h3 {
@@ -148,9 +173,33 @@
                 font-size: 14px;
             }
 
-            .feedback-section button {
+            .feedback-section .btn {
+                margin-bottom: 10px;
                 font-size: 16px;
             }
+
+            .old-feedback img {
+                width: 40px;
+                height: 40px;
+                margin-right: 10px;
+            }
+
+            .old-feedback h3 {
+                font-size: 16px;
+            }
+
+            .old-feedback p {
+                font-size: 14px;
+            }
+        }
+         .old-feedback .img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .btn .done:hover {
+            background-color: #2980b9;
         }
     </style>
 </head>
@@ -164,45 +213,74 @@
  </br>
  </br>
  <%
-String email = session.getAttribute("uname").toString();
-        ResultSet rs2 = s.stm.executeQuery("SELECT * FROM agents WHERE email_id='" + email + "'");
-        if (rs2.next()) {
-            int a_id = rs2.getInt("a_id");
-            String name=rs2.getString("center_name");
-           
+ String user=session.getAttribute("uname").toString();
+String status="";
+String s_id=request.getParameter("s_id");
 
+// sdfghjkl
+
+// dfghjkl;
+        
+            
+    ResultSet rs = s.stm.executeQuery("SELECT * FROM services WHERE s_id='" + s_id + "'");
+    if(rs.next()){
+
+    String name=rs.getString("s_name");
+    String desc=rs.getString("s_description");
+    String req=rs.getString("s_requirement");
+    String img=rs.getString("s_image");
+    String cost=rs.getString("s_cost");
+  
 %>
     <div class="feedback-container">
         <div class="feedback-section">
-            <h2>Leave Your Feedback</h2>
-            <form action="feedback_ins.jsp" method="post">
-                <label for="feedback-name">Name:</label>
-                <input type="text" id="feedback-name" name="name" value="<%=name%>" required>
+            <h2>Service details. </h2>
+            <form action="submitFeedback.jsp" method="post">
+                <%-- hear i need --%>
+                 <div class="old-feedback">
+                <img class="img" src="assets/img/digiasset/<%=img%>" alt="John Doe">
+                <div>
+                    <h3><b><%=name%></b></h3>
+                
+                </div>
+            </div>
+            <div class="old-feedback">
+                
+                <div>
+                    <h3></h3>
+                    <p><b>description:</b></br><%=desc%> </p>
+                    
+                </div>
+            </div>
+            <div class="btn">
+                <%-- <div class="btn"> --%>
+                <a style="color: white;" href="cart_ins.jsp?s_id=<%=s_id%>"> Book</a>
+                
 
-                <label for="feedback-email">Email:</label>
-            <input type="email" value="<%=email%>" id="feedback-email" name="email" required>
-
-                <label for="feedback-message">Your Feedback:</label>
-                <textarea id="feed" name="feed" rows="4" required></textarea>
-
-                <button type="submit">Submit Feedback</button>
+            </div> 
             </form>
         </div>
         <div class="old-feedback-section">
-            <h2>Old Feedback</h2>
-            <%
-            ResultSet rs1 = s.stm.executeQuery("SELECT * FROM feedback where a_id='" + a_id + "'");
-       while(rs1.next()) {
-        %>
+            <h2>Requirement's</h2>
             <div class="old-feedback">
-                <h3><%=name%></h3>
-                <p>Email: <%=email%></p>
-                <p>Message: <%=rs1.getString("feedback")%></p>
+                <%-- <img src="path/to/profile1.jpg" alt="John Doe"> --%>
+                <div>
+                    <h3></h3>
+                    <p><%=req%></p>
+                    <p></p>
+                </div>
             </div>
-            
-            <%}%>
+            <%-- <div class="old-feedback">
+                <img src="path/to/profile2.jpg" alt="Jane Smith">
+                <div>
+                    <h3>Jane Smith</h3>
+                    <p>Email: jane.smith@example.com</p>
+                    <p>Message: Could be better. Had some issues.</p>
+                </div>
+            </div> --%>
             <!-- Add more feedback entries as needed -->
         </div>
+
     </div>
     <%}%>
 

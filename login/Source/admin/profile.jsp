@@ -12,10 +12,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Profile Editing Section</title>
     <style>
         .body {
-
             font-family: Arial, sans-serif;
             width: 100%;
             display: flex;
@@ -26,7 +25,6 @@
             background-color: #f4f4f4;
         }
         .profile-edit-container {
-
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -104,35 +102,29 @@
     <jsp:include page="header.jsp"></jsp:include>
     <%
      String email = session.getAttribute("uname").toString();
-        ResultSet rs2 = s.stm.executeQuery("SELECT * FROM agents WHERE email_id='" + email + "'");
+        ResultSet rs2 = s.stm.executeQuery("SELECT * FROM users WHERE email='" + email + "'");
         if(rs2.next()) {%>
-    </br></br></br>
     <div class="body">
         <div class="profile-edit-container">
             <div class="profile-photo" id="profilePhoto">
-                <img src="assets/img/testimonials/<%=rs2.getString("a_image")%>" alt="Profile Photo">
+                <img src="assets/img/testimonials/<%=rs2.getString("u_image")%>" alt="Profile Photo">
             </div>
             <form action="profile_update.jsp" method="post">
             <input type="file" name="fileInput" id="fileInput" class="file-input" accept="image/*">
             <h2>Edit Profile</h2>
             
                 <div class="form-group">
-                    <label for="username">Center Name</label>
-                    <input type="text" value="<%=rs2.getString("center_name")%>" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="bio">Agent ID</label>
-                    <input type="text" id="a_id" value="<%=rs2.getString("agent_id")%>" name="a_id">
+                    <label for="username">FullName</label>
+                    <input type="text" value="<%=rs2.getString("name")%>" id="name" name="name" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" value="<%=rs2.getString("email_id")%>" id="email" name="email" required>
+                    <input type="email" value="<%=rs2.getString("email")%>" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label for="bio">Mobile No</label>
-                    <input type="text" id="mobile" value="<%=rs2.getString("phone_no")%>" name="mobile">
+                    <input type="text" id="mobile" value="<%=rs2.getString("phone")%>" name="mobile">
                 </div>
-
                 <div class="form-group">
                     <label for="bio">Address</label>
                     <input type="text" id="address" value="<%=rs2.getString("address")%>" name="address">

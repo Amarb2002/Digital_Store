@@ -36,15 +36,17 @@
         ResultSet rs2 = s.stm.executeQuery("SELECT * FROM users WHERE email='" + email + "'");
         if (rs2.next()) {
             int u_id = rs2.getInt("u_id");
-            ResultSet rs1 = s1.stm.executeQuery("SELECT * FROM booking WHERE c_id='" + u_id + "'");
+            ResultSet rs1 = s1.stm.executeQuery("SELECT * FROM booking  WHERE c_id='" + u_id + "'");
             while (rs1.next()) {
+                status = rs1.getString("status");
+                if(!status.equals("Delivered")){
                 count++;
                 int b_id = rs1.getInt("b_id");
                 int s_id = rs1.getInt("s_id");
                 
                 ResultSet rs = s2.stm.executeQuery("SELECT * FROM services WHERE s_id='" + s_id + "'");
                 while (rs.next()) {
-                    status = rs1.getString("status");
+                    
                     statusIndex = 0;
         %>
         <div class="booking-card">
@@ -61,7 +63,7 @@
             }%>
             <div class="booking-header">
                 <h2><%= rs.getString("s_name") %></h2>
-                <a href="#" class="booking-status">View</a>
+                <a href="view.jsp?s_id=<%=s_id%>" class="booking-status">View</a>
             </div>
             <div class="order-status">
                 <div class="status-bar">
@@ -88,12 +90,12 @@
             <button class="btn completed">Delivered</button>
             <% } else if(statusIndexx == 5){
                 %><a href="payment_ins.jsp?b_id=<%= b_id %>"><button class="btn">Work done </button></a><%
-            }else { %>
+            }else  { %>
             <a href="delete_booking.jsp?b_id=<%= b_id %>"><button class="btn">Cancel</button></a>
             <% } %>
         </div>
         <%
-                }
+                }}
             }
         }
         if (count == 0) {

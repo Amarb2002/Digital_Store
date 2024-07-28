@@ -152,7 +152,7 @@
         ResultSet rs2 = s.stm.executeQuery("SELECT * FROM agents WHERE email_id='" + email + "'");
         if (rs2.next()) {
             int a_id = rs2.getInt("a_id");
-            ResultSet rs1 = s1.stm.executeQuery("SELECT * FROM booking WHERE a_id='" + a_id + "'");
+            ResultSet rs1 = s1.stm.executeQuery("SELECT * FROM booking WHERE a_id='" + a_id + "' ORDER BY b_id DESC");
             while (rs1.next()) {
                 count++;
                 int b_id = rs1.getInt("b_id");
@@ -171,7 +171,8 @@
             <img src="assets/img/testimonials/<%=rs3.getString("u_image") %>" alt="Image description">
             <div class="booking-details">
                 <div class="booking-date">
-                    <%=rs1.getString("b_date")%> <!-- Assuming you have booking_date in your result set -->
+                    <b><%=status%></b> <%=rs1.getString("b_date")%> 
+                    <!-- Assuming you have booking_date in your result set -->
         </div>
                 <h2 style="font-size: 25px;" class="service-name"><%= rs.getString("s_name") %></h2>
 

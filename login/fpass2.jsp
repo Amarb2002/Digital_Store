@@ -26,12 +26,12 @@ else
 	<link rel="stylesheet" href="lgn_tmp/css/style.css">
 
 	</head>
-	<body class="img js-fullheight" style="background-image: url(lgn_tmp/images/bg.jpg);">
+	<body class="img js-fullheight" style="background-image: linear-gradient(rgba(44, 66, 142, 0.457), rgba(59, 59, 158, 0.374)), url(lgn_tmp/images/bg22.jpg);>
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Forgot Password</h2>
+					<h2 style="margin-top: 190px;" class="heading-section">Forgot Password</h2>
 				</div>
 			</div>
 			<div class="row justify-content-center">

@@ -38,8 +38,8 @@
             <ul>
                 <li><a href="dashbord.jsp" class="nav-link scrollto <%= request.getRequestURI().contains("dashbord.jsp") ? "active" : "" %>"><i class="bx bx-home"></i> <span>Dashbord</span></a></li>
                 <li><a href="FieldWork.jsp" class="nav-link scrollto <%= request.getRequestURI().contains("FieldWork. .jsp") ? "active" : "" %>"><i class="bx bx-user"></i> <span>FieldWork</span></a></li>
-                <li><a href="mybooking.jsp" class="nav-link scrollto <%= request.getRequestURI().contains("mybooking.jsp") ? "active" : "" %>"><i class="fa-solid fa-cart-shopping"></i> <span> </span></a></li>
-                <li><a href="history.jsp" class="nav-link scrollto <%= request.getRequestURI().contains("history.jsp") ? "active" : "" %>"><i class="fa-solid fa-book"></i> <span>History</span></a></li>
+                <li><a href="mybooking.jsp" class="nav-link scrollto <%= request.getRequestURI().contains("mybooking.jsp") ? "active" : "" %>"><i class="fa-solid fa-cart-shopping"></i> <span>Progress </span></a></li>
+                <li><a href="wallet.jsp" class="nav-link scrollto <%= request.getRequestURI().contains("wallet.jsp") ? "active" : "" %>"><i class="fa-solid fa-book"></i> <span>Wallet</span></a></li>
                 <li><a href="feedback.jsp" class="nav-link scrollto <%= request.getRequestURI().contains("feedback.jsp") ? "active" : "" %>"><i class="fa-solid fa-user-tie"></i> <span>FeedBack</span></a></li>
             </ul>
         </nav>

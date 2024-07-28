@@ -8,9 +8,9 @@
 <jsp:useBean id="s" class="Digi.DoorStep_DB"/>
 <jsp:getProperty name="s" property="conn"/>
 <%
-            String b_id=request.getParameter("b_id");
-            int z = s.stm.executeUpdate("DELETE FROM booking WHERE b_id='" + b_id + "'");
-            out.println("<script> alert('booking canceled..'); document.location='mybooking.jsp';</script>");
+            String s_id=request.getParameter("s_id");
+            int z = s.stm.executeUpdate("DELETE FROM services WHERE s_id='" + s_id + "'");
+            out.println("<script> alert('Service deleted..'); document.location='home.jsp';</script>");
    
 %>
 <%

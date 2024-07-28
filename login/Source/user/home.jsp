@@ -93,8 +93,10 @@
                       while(rs.next()){ 
                           int i = rs.getInt("s_id");
                 %>
-                <div class="service-item">
+                <div class="service-item" >
+                    <a href="view.jsp?s_id=<%=i%>">
                     <img src="assets/img/digiasset/<%=rs.getString("s_image") %>" alt="Service <%=i %>">
+                </a>
                     <h3><%=rs.getString("s_name") %></h3>
                     <p><%=rs.getString("s_description") %></p>
                     <a href="cart_ins.jsp?s_id=<%=i %>"><div class="btn-div">
