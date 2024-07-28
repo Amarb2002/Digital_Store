@@ -49,7 +49,9 @@
 	          <p class="w-100 text-center">&mdash; or Sign Up &mdash;</p>
 	          <div class="social d-flex text-center">
 	          	<a href="user_regf.jsp" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span><i class="fa fa-user"></i> Citizen Reg.</a>
+	          		          	<a href="agent_regf.jsp" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span><i class="fa fa-user"></i> Become a Agent</a>
 	          </div>
+	          
 		      </div>
 				</div>
 			</div>

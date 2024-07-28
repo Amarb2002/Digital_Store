@@ -244,7 +244,7 @@
             <div class="brand1">Digital-Door</div>
          
             <div class="profile">
-                <form method="post">
+                <form method="post" action="../../logout.jsp">
                     <i style="margin-right:30px;" class="fas fa-user-circle fa-2x"></i>
                     <div class="dropdown-content">
                         <img src="assets/img/testimonials/admin.png" alt="Profile Picture" class="profile-pic">
